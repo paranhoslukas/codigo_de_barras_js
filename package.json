@@ -1,0 +1,15 @@
+{
+  "name": "extrai-barcodes-pdf-exec",
+  "version": "1.0.0",
+  "main": "extrai_barcodes_para_excel.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "express": "^5.2.1",
+    "fs-extra": "^11.2.0",
+    "multer": "^2.0.2"
+  }
+}

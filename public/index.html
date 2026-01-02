@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importação de Notas Fiscais - Piccolotur</title>
+    <link rel="stylesheet" href="css/styles.css">
+    </style>
+</head>
+<body>
+
+    <img src="./img/piccolotur_image.png" alt="Piccolotur Logo" style="display: block; margin: 0 auto 20px auto; max-width: 200px;">
+
+    <div class="container">
+        <h1>Importação de Códigos de Barras de NF-e</h1>
+        <p>Escolha os arquivos PDF das Notas Fiscais para extração dos códigos de barras.</p>
+
+        <form id="uploadForm" action="/upload-pdfs" method="POST" enctype="multipart/form-data">
+            <input type="file" name="pdfs" accept=".pdf" multiple required>
+            <button type="submit">Processar e Gerar Excel</button>
+        </form>
+
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = 'Processando, aguarde... (Isso pode levar alguns segundos por PDF)';
+            statusDiv.className = '';
+
+            try {
+                const formData = new FormData(this);
+                
+                const response = await fetch('/upload-pdfs', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    statusDiv.innerHTML = `✅ Sucesso! O arquivo ${result.filename} foi gerado.`;
+                    statusDiv.className = 'success';
+                    
+                    // Opcional: oferecer download do arquivo
+                    window.location.href = result.downloadUrl; 
+                } else {
+                    statusDiv.innerHTML = `❌ Erro no Servidor: ${result.message}`;
+                    statusDiv.className = 'error';
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `❌ Erro de Conexão: ${error.message}`;
+                statusDiv.className = 'error';
+            }
+        });
+    </script>
+
+    <footer class="footer">
+        <p>&copy; 2025 Lucas Paranhos. Todos os direitos reservados.</p>
+</body>
+</html>

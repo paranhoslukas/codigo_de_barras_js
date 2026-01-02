@@ -1,0 +1,5 @@
+# Dependências e arquivos temporários
+/node_modules
+/output
+/uploads
+/temp_images
