@@ -116,6 +116,7 @@ http://localhost:3000
 
 ### 📁 Estrutura do Projeto
 
+```
 ├── public/
 │   ├── css/
 │   │   └── styles.css
@@ -128,6 +129,7 @@ http://localhost:3000
 ├── Dockerfile            # Instala Node, Poppler e ZBar
 ├── .dockerignore
 └── package.json
+```
 
 
 ### ⚙️ Fluxo de Processamento Interno
@@ -143,21 +145,3 @@ O ZBar varre as imagens e extrai os códigos de barras
 Os dados são consolidados em um arquivo Excel
 
 Os arquivos temporários são removidos automaticamente
-
-### 🧠 Observações Técnicas
-
-A escolha por executar binários nativos via CLI evita problemas comuns de wrappers JS/Python
-
-O Node.js atua exclusivamente como orquestrador de processos
-
-A arquitetura prioriza previsibilidade e robustez em ambiente Windows
-
-### 📌 Considerações Finais
-
-Este projeto foi desenhado para uso interno e corporativo, priorizando:
-
-Estabilidade
-
-Simplicidade operacional
-
-Facilidade de manutenção

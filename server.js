@@ -17,9 +17,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Pastas de trabalho
-const UPLOAD_DIR = path.join(__dirname, 'uploads');
-const TEMP_DIR = path.join(__dirname, 'temp_images');
-const OUTPUT_DIR = path.join(__dirname, 'output');
+const UPLOAD_DIR = path.join(__dirname, 'uploads'); // Onde os PDFs serão enviados
+const TEMP_DIR = path.join(__dirname, 'temp_images');// Onde as imagens temporárias serão salvas
+const OUTPUT_DIR = path.join(__dirname, 'output');// Onde o arquivo Excel final será salvo
 
 // Configuração do Multer para preservar o nome original
 const storage = multer.diskStorage({
@@ -61,6 +61,7 @@ function runCommand(command) {
  * Processa um único PDF usando Poppler (imagem) e ZBar (leitura).
  * @param {string} caminhoPdf 
  */
+
 async function processarPdf(caminhoPdf) {
     const nomePdf = path.basename(caminhoPdf);
     const resultados = [];
